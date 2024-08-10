@@ -9,12 +9,19 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { emailLogin, signup } from "./actions";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-export default function Login({
+export default async function Login({
   searchParams,
 }: {
   searchParams: { message: string };
 }) {
+  const supabase = createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if(user) return redirect('/todos');
+  
   return (
     <section className="h-[calc(100vh-57px)] flex justify-center items-center">
       <Card className="mx-auto max-w-sm">

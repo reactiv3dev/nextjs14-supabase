@@ -1,7 +1,8 @@
 import { TodoItem } from "./todo-item";
 import { TodoForm } from "./todo-form";
+import { Todo } from "@/types/todo";
 
-export function TodoList({ todos }: { todos: Array<string> }) {
+export function TodoList({ todos }: { todos: Array<Todo> }) {
   return (
     <>
       <TodoForm />
